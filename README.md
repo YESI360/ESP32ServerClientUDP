@@ -3,8 +3,16 @@ server ESP32
 cliente01 Belly
 cliente02 Chest
 
-el server va enchufado a la compu. tiene un boton
-cuando toco el boton, ambos clientes se resetean
+el server va enchufado a la compu. tiene dos botones
+cuando toco, el cliente se resetea*
+
+Version1 mando reset 
+Version2 mando una orden para poner en sensor en modo calibracion
+
+el sensor tiene 2 modos: manda datos continuos mientras hace la calibracion y cambios de estado para (1 y 2) cuando el input alcanza el pico
+para la calibracion uso esta libreria Plaquette.h
+https://github.com/SofaPirate/Plaquette/tree/master
+
 
 [https://drive.google.com/file/d/12OC1lFa4HGMUCTZ6yY3kOXbRDUAy4mEZ/view?usp=sharing](https://drive.google.com/file/d/1OIRZ3unpIvKRhJJr_Llv9eHtv2xBvs_L/view?usp=drive_link)
 https://drive.google.com/file/d/11XEk1AfwvsFiewQ2JZujupUTQfr0nQug/view?usp=drive_link
