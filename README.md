@@ -13,6 +13,9 @@ el sensor tiene 2 modos: manda datos continuos mientras hace la calibracion y ca
 para la calibracion uso esta libreria Plaquette.h
 https://github.com/SofaPirate/Plaquette/tree/master
 
+En Unity, uso este asset https://github.com/dwilches/Ardity/tree/master/UnityProject/Assets/Ardity/Scripts
+el script "SerialController"
+y otro que hize yo llamado Inputs (en la carpeta Unity)
 
 [https://drive.google.com/file/d/12OC1lFa4HGMUCTZ6yY3kOXbRDUAy4mEZ/view?usp=sharing](https://drive.google.com/file/d/1OIRZ3unpIvKRhJJr_Llv9eHtv2xBvs_L/view?usp=drive_link)
 https://drive.google.com/file/d/11XEk1AfwvsFiewQ2JZujupUTQfr0nQug/view?usp=drive_link
