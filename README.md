@@ -23,13 +23,13 @@ con esta funcion activo todas las respuestas audio-visuales del juego
 
 ![image](https://github.com/YESI360/ESP32ServerClientUDP/assets/41321821/79df5078-6c7f-4571-ac49-eb41573f0ce9)
 
-#demo del sensor en el pecho
+# demo del sensor en el pecho
 https://drive.google.com/file/d/11XEk1AfwvsFiewQ2JZujupUTQfr0nQug/view?usp=drive_link
 
-#demo de la instalacion
+# demo de la instalacion
 https://drive.google.com/file/d/1VkUtWb_ikpXN3ZJYNjZLXKw96-gHU1DK/view?usp=drive_link
 
-#demo del funcionamiento server/client
+# demo del funcionamiento server/client
 [https://drive.google.com/file/d/12OC1lFa4HGMUCTZ6yY3kOXbRDUAy4mEZ/view?usp=sharing](https://drive.google.com/file/d/1OIRZ3unpIvKRhJJr_Llv9eHtv2xBvs_L/view?usp=drive_link)
 
 
