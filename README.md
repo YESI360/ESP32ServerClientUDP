@@ -12,4 +12,5 @@ cuando toco el boton, ambos clientes se resetean
 
 ![server client + inside](https://user-images.githubusercontent.com/41321821/205462976-2d1d24ca-24ab-4deb-bcf2-380d6776a7ac.jpg)
 
-<iframe src="https://giphy.com/embed/hp0cSpJAWCZ881lewp" width="480" height="272" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hp0cSpJAWCZ881lewp">via GIPHY</a></p>
+![til]([./app/assets/images/banner.png](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG91Z2Z0Y2N1cHYxZG03b3Zsajh4b3VkeDFmc3R2NzFwa3J6OHM1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hp0cSpJAWCZ881lewp/giphy-downsized-large.gif))
+
