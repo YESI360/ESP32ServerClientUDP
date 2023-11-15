@@ -21,14 +21,8 @@ el script "SerialController"
 y otro que hize yo llamado Inputs (en la carpeta Unity)
 con esta funcion activo todas las respuestas audio-visuales del juego
 
-public static class RvInputs
-{
-    public static float chest_Calibrated;
-    public static int belly_Calibrated;
-    public static float chest_Crude;
-    public static float belly_Crude;
-    public static bool mic_Input;
-}
+![image](https://github.com/YESI360/ESP32ServerClientUDP/assets/41321821/79df5078-6c7f-4571-ac49-eb41573f0ce9)
+
 
 [https://drive.google.com/file/d/12OC1lFa4HGMUCTZ6yY3kOXbRDUAy4mEZ/view?usp=sharing](https://drive.google.com/file/d/1OIRZ3unpIvKRhJJr_Llv9eHtv2xBvs_L/view?usp=drive_link)
 https://drive.google.com/file/d/11XEk1AfwvsFiewQ2JZujupUTQfr0nQug/view?usp=drive_link
