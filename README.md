@@ -9,13 +9,26 @@ cuando toco, el cliente se resetea*
 Version1 mando reset 
 Version2 mando una orden para poner en sensor en modo calibracion
 
-el sensor tiene 2 modos: manda datos continuos mientras hace la calibracion y cambios de estado para (1 y 2) cuando el input alcanza el pico
+el sensor tiene 2 modos: 
+_Calibrated manda datos continuos mientras hace la calibracion 
+_Crude cambios de estado para (1 y 2) de la senal ya calibrada
+
 para la calibracion uso esta libreria Plaquette.h
 https://github.com/SofaPirate/Plaquette/tree/master
 
 En Unity, uso este asset https://github.com/dwilches/Ardity/tree/master/UnityProject/Assets/Ardity/Scripts
 el script "SerialController"
 y otro que hize yo llamado Inputs (en la carpeta Unity)
+con esta funcion activo todas las respuestas audio-visuales del juego
+
+public static class RvInputs
+{
+    public static float chest_Calibrated;
+    public static int belly_Calibrated;
+    public static float chest_Crude;
+    public static float belly_Crude;
+    public static bool mic_Input;
+}
 
 [https://drive.google.com/file/d/12OC1lFa4HGMUCTZ6yY3kOXbRDUAy4mEZ/view?usp=sharing](https://drive.google.com/file/d/1OIRZ3unpIvKRhJJr_Llv9eHtv2xBvs_L/view?usp=drive_link)
 https://drive.google.com/file/d/11XEk1AfwvsFiewQ2JZujupUTQfr0nQug/view?usp=drive_link
