@@ -13,18 +13,13 @@ unsigned int localPort = 8888;      // local port to listen on
 // buffers for receiving and sending data
 
 //char packetBuffer[UDP_TX_PACKET_MAX_SIZE + 1]; //buffer to hold incoming packet,
-//char packetBuffer[20 + 1]; //buffer to hold incoming packet
-char packetBuffer[1]; //buffer to hold incoming packet
+char packetBuffer[20 + 1]; //buffer to hold incoming packet
 char  ReplyBuffer[] = "acknowledged\r\n";       // a string to send back
-bool sendReset = true;
+//bool sendReset = true;
 
 WiFiUDP Udp;
 
-#define BUTTON_PIN 27 // GIOP21 pin connected to button
-
-// Variables will change:
-int lastState = HIGH; // the previous state from the input pin
-int currentState;     // the current reading from the input pin
+#define BUTTON_PIN 26 // GIOP21 pin connected to button
 
 void setup()
 {
@@ -57,7 +52,25 @@ void loop()
 
   // if there's data available, read a packet
   int packetSize = Udp.parsePacket();
-  if (packetSize) {
+
+  if (packetSize)
+  {
+
+    //if (millis() > 20000 && sendReset == true)// Change this condition to a button or a received message form a web page. A button is less complicated.
+    if (Push_button_state == LOW)
+    {
+
+      Udp.stop();
+      Serial.println("belly LOW");
+      //Serial.println(sendReset);
+      Udp.beginPacket(Udp.remoteIP(), 8889);
+      Udp.print('b'); // b is the message the client is waiting for in order to reboot
+      Udp.endPacket();
+      //sendReset = false;      // We sent the reset message
+      //Serial.println(sendReset);
+      Udp.begin(localPort);
+    }
+
     /* Serial.printf("Received packet of size %d from %s:%d\n    (to %s:%d, free heap = %d B)\n",
                    packetSize,
                    Udp.remoteIP().toString().c_str(), Udp.remotePort(),
@@ -76,26 +89,9 @@ void loop()
     Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
     Udp.print(ReplyBuffer); // "acknowledged\r\n"
     Udp.endPacket();
-
-
-
-    //if (millis() > 20000 && sendReset == true)// Change this condition to a button or a received message form a web page. A button is less complicated.
-    if (Push_button_state == HIGH && sendReset == true)
-    {
-
-      Serial.println("HIGH");
-    }
-    else
-    {
-      Serial.println("LOW");
-      Udp.beginPacket(Udp.remoteIP(), 8889);
-      Udp.print(1); // 1 is the message the client is waiting for in order to reboot
-      Udp.endPacket();
-      // We sent the reset message
-      sendReset = false;
-    }
-
   }
 
-  delay(100);
+
+  delay(1000);
+
 }
