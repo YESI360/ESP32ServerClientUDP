@@ -1,0 +1,122 @@
+#######################################
+# Syntax Coloring Map For Plaquette
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Plaquette KEYWORD1
+
+AnalogIn	KEYWORD1
+DigitalIn	KEYWORD1
+AnalogOut	KEYWORD1
+DigitalOut	KEYWORD1
+
+StreamIn	KEYWORD1
+StreamOut	KEYWORD1
+
+SquareOsc	KEYWORD1
+TriOsc	KEYWORD1
+SineOsc	KEYWORD1
+
+Metro	KEYWORD1
+Ramp	KEYWORD1
+Timer	KEYWORD1
+
+AdaptiveNormalizer	KEYWORD1
+MinMaxScaler	KEYWORD1
+Normalizer	KEYWORD1
+Smoother	KEYWORD1
+Thresholder	KEYWORD1
+
+ServoOut	KEYWORD1
+ContinuousServoOut	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+step	KEYWORD2
+
+autoSampleRate  KEYWORD2
+enableAutoSampleRate  KEYWORD2
+sampleRate  KEYWORD2
+samplePeriod  KEYWORD2
+seconds  KEYWORD2
+beginSerial KEYWORD2
+
+pin	KEYWORD2
+mode	KEYWORD2
+
+on	KEYWORD2
+off	KEYWORD2
+toggle	KEYWORD2
+put	KEYWORD2
+putOn	KEYWORD2
+
+isOn	KEYWORD2
+isOff	KEYWORD2
+get	KEYWORD2
+getInt	KEYWORD2
+fell  KEYWORD2
+rose  KEYWORD2
+changed  KEYWORD2
+
+smooth	KEYWORD2
+noSmooth	KEYWORD2
+debounce  KEYWORD2
+noDebounce  KEYWORD2
+debounceMode  KEYWORD2
+time	KEYWORD2
+cutoff	KEYWORD2
+
+period  KEYWORD2
+frequency  KEYWORD2
+dutyCycle  KEYWORD2
+width  KEYWORD2
+phase  KEYWORD2
+amplitude  KEYWORD2
+precision  KEYWORD2
+targetMean	KEYWORD2
+targetStdDev	KEYWORD2
+
+start  KEYWORD2
+stop	KEYWORD2
+resume	KEYWORD2
+elapsed KEYWORD2
+progress	KEYWORD2
+isStarted  KEYWORD2
+isComplete	KEYWORD2
+hasPassed	KEYWORD2
+
+mapFloat	KEYWORD2
+randomFloat	KEYWORD2
+lerp	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+SOURCE	LITERAL1
+SINK	LITERAL1
+INTERNAL_PULLUP	LITERAL1
+EXTERNAL_PULLUP	LITERAL1
+EXTERNAL_PULLDOWN	LITERAL1
+ANALOG_DEFAULT	LITERAL1
+ANALOG_INVERTED	LITERAL1
+
+DEBOUNCE_DEFAULT  LITERAL1
+DEBOUNCE_LOCK_OUT  LITERAL1
+DEBOUNCE_PROMPT_DETECT  LITERAL1
+
+THRESHOLD_LOW	LITERAL1
+THRESHOLD_HIGH	LITERAL1
+THRESHOLD_FALLING	LITERAL1
+THRESHOLD_RISING	LITERAL1
+THRESHOLD_CHANGE	LITERAL1
