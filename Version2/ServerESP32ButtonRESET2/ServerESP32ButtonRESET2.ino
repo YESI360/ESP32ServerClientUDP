@@ -1,3 +1,7 @@
+///ESTE CODIGO NO FUNCIONA!!!! ////
+///ESTE CODIGO NO FUNCIONA!!!! ////
+///ESTE CODIGO NO FUNCIONA!!!! ////
+////////////////////////////////// -----USAR EL OTRO QUE SUELTO, SIN CARPETA-----///////////////////////////////////
 /* Creates a WiFI access point (default IP is 192.168.4.1) opens up Udp port 8888 and accepts data.
    hacked together by Alexandre Castonguay for Yesica Duarte
    REQUIRES : ESP32, tested on a node32s model.
