@@ -4,14 +4,13 @@
 */
 // matches with version 5 of the client
 
-/// TODO : Merge with the sensor receive code and sending to Unity ////
+//////// Codigo cargado en la ESP32 que va conectada a la compu por usb. Recive data de los sensores "Chest" y "Belly" //////////
 
 #include <WiFi.h>
 #include <WiFiUdp.h>
 unsigned int localPort = 8888;      // local port to listen on
 
 // buffers for receiving and sending data
-
 //char packetBuffer[UDP_TX_PACKET_MAX_SIZE + 1]; //buffer to hold incoming packet,
 char packetBuffer[20 + 1]; //buffer to hold incoming packet
 //char packetBuffer[1]; //buffer to hold incoming packet
@@ -79,16 +78,16 @@ void loop()
     Udp.print(ReplyBuffer); // "acknowledged\r\n"
     Udp.endPacket();
 
+     ///////////////////ESTOS 2 IF SON PARA LOS BOTONES QUE LE AGREGUE EL CIRCUITO. 
+     //////////Son para 'resetear' los valores. Es decir, empieza a mandar valor continuos para la "calibracion"
     ///////////////////CHEST//////Udp.print(1)////////////////////////////
     if (Button_chest == HIGH )//&& sendReset == true)
     {
       //Serial.println("HIGHchest");
-
     }
     else
     {
       Serial.println("LOWchest");
-
       Udp.beginPacket(Udp.remoteIP(), 8889);
       Udp.print('c'); // 1 is the message the client is waiting for in order to reboot
       Udp.endPacket();
@@ -99,7 +98,6 @@ void loop()
     if ( Button_belly == HIGH )//&& sendReset == true)
     {
       //Serial.println("HIGHbelly");
-
     }
     else
     {
@@ -110,9 +108,6 @@ void loop()
       Udp.endPacket();
       //sendReset = false;
     }
-
-
-
   }
 
   delay(100);
