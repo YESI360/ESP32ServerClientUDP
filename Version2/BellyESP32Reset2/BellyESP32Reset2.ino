@@ -12,18 +12,14 @@
     Alexandre Castonguay acastonguay@artengine.ca For Yesica Duarte. Thank you to EWMA library creator Arsen Torbarina.
 */
 #include <Plaquette.h>
-#include <Thresholder.h>
+#include <Thresholder.h>//dentro de la LIBRERIA PLAQUETTE
 
-// The analog input.35 = R1 ///////////////////////33NADA/////
-//AnalogIn in(32); // 32 = R3 1K
-//AnalogIn in(34); // 34 = R2 2K//////////////
 AnalogIn in(34);
+int datoL2 = 0; // Indicates state of breathing "1" or "2"// 'datoL2' es para identificar que es el sensor Belly
 
-// The serial output.
+//////////LIBRERIA PLAQUETTE
 StreamOut serialOut;
-
 AdaptiveNormalizer norm;
-
 Thresholder peakDetector(0.7, THRESHOLD_RISING, 0.5);
 //Thresholder peakDetector(0.7, THRESHOLD_FALLING, 0.5);
 
@@ -54,13 +50,13 @@ unsigned int localPort = 8889;      // local port to listen on
 char packetBuffer[20 + 1]; //buffer to hold incoming packet---------------------
 ///// Fin Receiving UDP ////////////
 
-int datoL2 = 0; // Indicates state of breathing "1" or "2"
+
 
 unsigned long initRutina;
-unsigned long leTemps = 0;
-unsigned long elViejoTiempo = 0;
-unsigned long intervalleEntreResp = 0;
-String calMessage = "CB, ";//CAL BELLY
+unsigned long leTemps = 0;//el tiempo
+unsigned long elViejoTiempo = 0;//tiempo anterior
+unsigned long intervalleEntreResp = 0;//intervalo entre respiraciones
+String calMessage = "CB, ";//VALOR CALIBRADO BELLY
 String calibracion = "hello";
 
 bool invertScreen = false;
@@ -89,10 +85,9 @@ void begin() {
   ////// For Receiving UDP /////
   Serial.printf("UDP server on port %d\n", localPort);
   Udp.begin(localPort);
-  //////////////////////////////
-
+    
+  ///////////prender led para avisar que prendio ///////////////////
   pinMode (LED_BUILTIN, OUTPUT); // LED del ESP8266
-
   for ( int i = 0 ; i < 5 ; i++ ) { //el led parpadea 5 veces para saludar!
     digitalWrite(LED_BUILTIN, 1 ) ;
     delay ( 100 ) ;
@@ -116,15 +111,15 @@ void begin() {
     //////////////////////////////
   }
 
-  digitalWrite (LED_BUILTIN, HIGH);//apago led por las dudas reverse para los ESP8266
+  digitalWrite (LED_BUILTIN, HIGH);//apago led por las dudas 
 
+    /////////////////CALIBRACION//////////////////
   // Smooth over a window of 100ms (ie. one tenth of a second).
   // NOTE: Try changing the smoothing value to see how it affects the outputs.
   //in.smooth(0.2);
   in.smooth(0.05);
-
   norm.time(10);
-
+////////////////////TIEMPO EN MILIS QUE TOMA PARA HACER LA CALIBRACION//////////////////
   initRutina = millis() + 10000;///////////////////////////////////10mil 10seg
   //initRutina = millis() + 40000; //calibracion en CITY v.default.
   //initRutina = millis() + 30000;//RESET when plays instruccion 05
@@ -138,13 +133,12 @@ void step() {
   //Serial.println(" ");
   //Serial.print(6 * peakDetector);
   //Serial.println(" ");
-
   //Udp.beginPacket(ip, 8888);
   //String msg = String(localData.temp);
 
-  if (millis() < initRutina) //////////////////////solo envia msg calibracion
+  if (millis() < initRutina) //////////////////////solo envia valores para la calibracion. CONTINUOS
   {
-    String calibracion = String (norm * 6);
+    String calibracion = String (norm * 6);//*6 es para tener numeros mas grandes...
     String sendCal = calMessage + calibracion;
     Udp.beginPacket(ip, 8888);
     Udp.print(sendCal);
@@ -152,29 +146,25 @@ void step() {
 
     /////// Display values on the screen
     display.clearDisplay();
-
     display.setTextSize(1);             // Normal 1:1 pixel scale
     display.setTextColor(WHITE);        // Draw white text
     display.setCursor(0, 0);
     display.println(myIP);// Start at top-left corner
     //display.println(F("Client connected ?"));
-
     display.setTextSize(2);             // Draw 2X-scale text
     display.setTextColor(WHITE);
     display.setCursor(5, 16);
     display.println(F("BELLY"));
-
     display.setTextSize(4);             // Draw 2X-scale text
     display.setTextColor(WHITE);
     display.setCursor(6, 35);
     display.println(norm * 6 );
-
     display.display();
     delay(50);
   }
 
-  if (millis() > initRutina)////////////////////////envia msg sensado
-  {
+  if (millis() > initRutina)////////////////////////envia valores ya calibrados. CAMBIOS DE ESTADO 1 Y 2
+  {///////////////////////////////////////////////////el 2 indica INHALACION [se estira el cinturon]. el 1 EXHALACION [cinturon vuelve al valor de reposo]
 
     if (peakDetector == 1)
     {
@@ -194,7 +184,7 @@ void step() {
       elViejoTiempo = leTemps;
 
     }
-    else if ( (millis() - elViejoTiempo) < intervalleEntreResp / 3) { // si nous sommes à l'intérieur du tiers de l'ijntervalle de respiration
+    else if ( (millis() - elViejoTiempo) < intervalleEntreResp / 3) { // si estamos dentro de un tercio del intervalo de respiración. el 3 es un numero que daba mejor...
       //Serial.println("sending b2 to server");
       digitalWrite (LED_BUILTIN, LOW);
       Udp.beginPacket(ip, 8888);
@@ -204,33 +194,27 @@ void step() {
 
       /////// Display values on the screen
       display.clearDisplay();
-
       if (invertScreen == true)
       {
         display.invertDisplay(true);
       }
-
       display.setTextSize(1);             // Normal 1:1 pixel scale
       display.setTextColor(WHITE);        // Draw white text
       display.setCursor(0, 0);
       display.println(myIP);// Start at top-left corner
       //display.println(F("Client connected ?"));
-
       display.setTextSize(2);             // Draw 2X-scale text
       display.setCursor(5, 16);
       display.setTextColor(WHITE);
       display.println(F("BELLY"));
-
       display.setTextSize(4);
       display.setCursor(6, 35);
       display.println(2);
-
       display.display();
-
     }
     else
     {
-      datoL2 == 2; // nope
+      datoL2 == 2; 
       digitalWrite (LED_BUILTIN, HIGH);
       Udp.beginPacket(ip, 8888);
       Udp.print("belly, 1");
@@ -250,16 +234,13 @@ void step() {
       display.setCursor(0, 0);
       display.println(myIP);// Start at top-left corner
       //display.println(F("Client connected ?"));
-
       display.setTextSize(2);             // Draw 2X-scale text
       display.setCursor(5, 16);
       display.setTextColor(WHITE);
       display.println(F("BELLY"));
-
       display.setTextSize(4);
       display.setCursor(6, 35);
       display.println(1);
-
       display.display();
     }
 
@@ -286,10 +267,5 @@ void step() {
         //ESP.restart();
       }
     }
-
-
-
   }
-
-  //delay(200);///NO VA
 } // fin step
