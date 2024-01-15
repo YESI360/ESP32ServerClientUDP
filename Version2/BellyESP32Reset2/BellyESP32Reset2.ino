@@ -16,6 +16,7 @@
 
 AnalogIn in(34);
 int datoL2 = 0; // Indicates state of breathing "1" or "2"// 'datoL2' es para identificar que es el sensor Belly
+////el 2 indica INHALACION [se estira el cinturon]. el 1 EXHALACION [cinturon vuelve al valor de reposo]
 
 //////////LIBRERIA PLAQUETTE
 StreamOut serialOut;
@@ -164,7 +165,7 @@ void step() {
   }
 
   if (millis() > initRutina)////////////////////////envia valores ya calibrados. CAMBIOS DE ESTADO 1 Y 2
-  {///////////////////////////////////////////////////el 2 indica INHALACION [se estira el cinturon]. el 1 EXHALACION [cinturon vuelve al valor de reposo]
+  {
 
     if (peakDetector == 1)
     {
@@ -260,6 +261,7 @@ void step() {
       packetBuffer[n] = 0;
       //Serial.println("Contents:");
       //Serial.println(packetBuffer);
+                //////////////////////recibe el dato de que toco el boton en el circuito del SERVER para "resetear"
       if (packetBuffer[0] == 'b') { // This compares the received message (we're sending '1')
         //"Resetting";
         invertScreen == true;
